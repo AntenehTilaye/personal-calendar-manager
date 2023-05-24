@@ -39,6 +39,10 @@ public class TaskCollectionRepository {
         return taskList.stream().filter(t -> t.id().equals(id)).count() == 1;
     }
 
+    public void delete(Integer id) {
+        taskList.removeIf(c -> c.id().equals(id));
+    }
+
     @PostConstruct
     private void init() {
         for (int i = 0; i < 3; i++) {
@@ -53,6 +57,8 @@ public class TaskCollectionRepository {
             taskList.add(t);
         }
     }
+
+    
 
     
 }
