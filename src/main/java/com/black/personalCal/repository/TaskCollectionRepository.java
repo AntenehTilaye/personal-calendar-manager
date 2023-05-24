@@ -31,7 +31,12 @@ public class TaskCollectionRepository {
     }
 
     public void save(Task task) {
+        taskList.removeIf(c -> c.id().equals(task.id()));
         taskList.add(task);
+    }
+
+    public boolean existsById(Integer id) {
+        return taskList.stream().filter(t -> t.id().equals(id)).count() == 1;
     }
 
     @PostConstruct
@@ -48,4 +53,6 @@ public class TaskCollectionRepository {
             taskList.add(t);
         }
     }
+
+    
 }
